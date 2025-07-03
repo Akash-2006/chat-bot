@@ -24,7 +24,7 @@
 }
 
 .request ::ng-deep p {
-  max-width: 70%;
+  width: 100%;
   padding: 12px 16px;
   border-radius: 18px 18px 4px 18px;
   margin-bottom: 8px;
@@ -58,7 +58,7 @@
   padding: 16px;
   border-radius: 8px;
   overflow-x: auto;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   margin: 12px 0;
   font-size: 13px;
   line-height: 1.4;
@@ -70,7 +70,7 @@
   color: var(--accent-primary) !important;
   padding: 2px 6px;
   border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 13px;
 }
 
@@ -146,7 +146,9 @@
 }
 
 @keyframes typing {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     transform: scale(0.8);
     opacity: 0.5;
   }
@@ -170,4 +172,3 @@
     padding: 12px;
   }
 }
-

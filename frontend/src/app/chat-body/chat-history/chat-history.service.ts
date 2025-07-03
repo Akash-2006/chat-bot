@@ -37,7 +37,7 @@ export class ChatHistoryService {
           ...(this.chatHistory() ?? {}),
           [this.activeChat()]: [
             ...((this.chatHistory()?.[this.activeChat()]) ?? []),
-            { request, response: '' } // Empty response initially
+            { request, response: '' }
           ]
         });
     this.saveHistory();
@@ -48,7 +48,6 @@ export class ChatHistoryService {
     const currentChatHistory = currentHistory?.[this.activeChat()] ?? [];
 
     if (currentChatHistory.length > 0) {
-      // Update the last message with the bot response
       const lastIndex = currentChatHistory.length - 1;
       const updatedHistory = [...currentChatHistory];
       updatedHistory[lastIndex] = {
@@ -89,7 +88,7 @@ export class ChatHistoryService {
   }
 
   rename(oldKey: string, newKey: string) {
-    const current = this.chatHistory(); // Get current state
+    const current = this.chatHistory();
 
     if (!current?.[oldKey]) return;
 

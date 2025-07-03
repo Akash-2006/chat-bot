@@ -12,7 +12,6 @@
   overflow-y: auto;
 }
 
-/* Header Section */
 .header {
   display: flex;
   justify-content: space-between;
@@ -22,7 +21,6 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-/* New Chat Button */
 .new-chat-btn {
   display: flex;
   align-items: center;
@@ -53,7 +51,6 @@
   font-weight: bold;
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -78,7 +75,6 @@
   transition: transform 0.3s ease;
 }
 
-/* Chat Thread Container */
 .chat-thread-container {
   position: relative;
 }
@@ -112,7 +108,6 @@
   white-space: nowrap;
 }
 
-/* Chat Options */
 .chat-options {
   position: relative;
   z-index: 10;
@@ -144,7 +139,6 @@
   display: none;
 }
 
-/* Options Menu */
 .options-menu {
   position: absolute;
   top: 100%;
@@ -159,13 +153,11 @@
   margin-top: 4px;
 }
 
-/* Ensure open details have higher z-index */
 details[open] {
   z-index: 999;
   position: relative;
 }
 
-/* Ensure the container respects the stacking */
 .chat-thread-container {
   position: relative;
   z-index: 1;
@@ -208,7 +200,6 @@ details[open] {
   opacity: 0.8;
 }
 
-/* Rename Input */
 .rename-input {
   width: 100%;
   padding: 8px 12px;
@@ -231,7 +222,6 @@ details[open] {
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
 }
 
-/* Animations */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -247,7 +237,6 @@ details[open] {
   animation: slideIn 0.2s ease-out;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .chat-threads {
     min-width: 100%;

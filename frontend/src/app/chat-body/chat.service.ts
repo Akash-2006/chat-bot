@@ -9,8 +9,6 @@ export class ChatService {
   private readonly http: HttpClient = inject(HttpClient);
 
   postMessage(message: string): Observable<ResponseType> {
-    console.log("Posting message:", message);
-
     return this.http.post<ResponseType>(this.httpUrl, { message: message });
   }
 }

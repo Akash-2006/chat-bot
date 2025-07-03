@@ -56,14 +56,12 @@
   background-color: var(--bg-tertiary);
 }
 
-/* Input Container */
 .input-container {
   position: relative;
   width: 70vw;
   margin-bottom: 50px;
 }
 
-/* Loading Indicator */
 .loading-indicator {
   position: absolute;
   top: 50%;
@@ -81,7 +79,6 @@
   z-index: 10;
 }
 
-/* Spinner Animation */
 .spinner {
   width: 20px;
   height: 20px;
@@ -96,7 +93,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .input-container {
     width: 85vw;

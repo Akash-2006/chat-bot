@@ -51,7 +51,6 @@
   position: relative;
 }
 
-/* Code blocks */
 ::ng-deep pre {
   background-color: var(--code-bg) !important;
   color: var(--code-text) !important;
@@ -79,7 +78,6 @@
   color: var(--accent-primary);
 }
 
-/* Scrollbar for chat history */
 .chat-history::-webkit-scrollbar {
   width: 6px;
 }
@@ -97,7 +95,6 @@
   background: var(--text-secondary);
 }
 
-/* Message animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -109,7 +106,6 @@
   }
 }
 
-/* Typing indicator animation */
 .loading-response {
   display: flex;
   align-items: center;
@@ -158,7 +154,6 @@
   }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .request ::ng-deep p {
     max-width: 85%;

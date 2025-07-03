@@ -45,7 +45,7 @@ serve(async (req) => {
       const data = await response.json();
       const reply = data.choices?.[0]?.message?.content || "No reply from AI.";
 
-      return new Response(JSON.stringify({ reply: apiKey + "hii" }), {
+      return new Response(JSON.stringify({ reply }), {
         status: 200,
         headers: {
           "Content-Type": "application/json",

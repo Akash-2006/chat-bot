@@ -9,4 +9,3 @@ RUN deno cache server.js
 CMD ["run", "-A", "server.js"]
 
 EXPOSE 8000
-

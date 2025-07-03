@@ -1,0 +1,173 @@
+.chat-history {
+  height: 80vh;
+  width: 75vw;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.chat-history-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.request {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.request ::ng-deep p {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 18px 18px 4px 18px;
+  margin-bottom: 8px;
+  text-align: left;
+  background-color: var(--user-message-bg);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px var(--shadow-light);
+  position: relative;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.response {
+  width: 100%;
+  max-width: 80%;
+  color: var(--text-primary);
+  background-color: var(--bot-message-bg);
+  line-height: 1.6;
+  padding: 16px 20px;
+  border-radius: 18px 18px 18px 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px var(--shadow-light);
+  font-size: 14px;
+  position: relative;
+}
+
+/* Code blocks */
+::ng-deep pre {
+  background-color: var(--code-bg) !important;
+  color: var(--code-text) !important;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  border: 1px solid var(--border-color);
+}
+
+::ng-deep code {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--accent-primary) !important;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+}
+
+::ng-deep strong {
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+/* Scrollbar for chat history */
+.chat-history::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.chat-history::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Message animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Typing indicator animation */
+.loading-response {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.7;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--text-secondary);
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+@keyframes typing {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .request ::ng-deep p {
+    max-width: 85%;
+  }
+
+  .response {
+    max-width: 90%;
+  }
+
+  .chat-history {
+    padding: 12px;
+  }
+}
+

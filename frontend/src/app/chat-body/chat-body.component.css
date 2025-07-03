@@ -1,0 +1,108 @@
+.chat-body {
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-primary);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px var(--shadow-light);
+}
+
+.input-field {
+  width: 70vw;
+  min-height: 80px;
+  max-height: 200px;
+  margin-bottom: 50px;
+  padding: 16px 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1), 0 4px 8px var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.input-field::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.input-field:hover {
+  border-color: var(--accent-secondary);
+  box-shadow: 0 4px 8px var(--shadow-medium);
+}
+
+.input-field:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background-color: var(--bg-tertiary);
+}
+
+.input-field.loading {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-tertiary);
+}
+
+/* Input Container */
+.input-container {
+  position: relative;
+  width: 70vw;
+  margin-bottom: 50px;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--bg-primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px var(--shadow-medium);
+  color: var(--text-secondary);
+  font-size: 14px;
+  z-index: 10;
+}
+
+/* Spinner Animation */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-top: 2px solid var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .input-container {
+    width: 85vw;
+  }
+
+  .input-field {
+    width: 100%;
+  }
+}

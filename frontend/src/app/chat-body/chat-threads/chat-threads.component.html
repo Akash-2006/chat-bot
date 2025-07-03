@@ -1,0 +1,43 @@
+<div class="chat-threads">
+  <div class="header">
+    <button class="new-chat-btn" (click)="createNewChat()">
+      <span class="btn-icon">+</span>
+      New Chat
+    </button>
+    <button class="theme-toggle" (click)="toggleTheme()" [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+      <span class="theme-icon">{{ isDarkMode ? '☀️' : '🌙' }}</span>
+    </button>
+  </div>
+  
+  @for (chat of getAllChats();track chat){
+    <div class="chat-thread-container">
+      <div (click)="changeChat(chat)" class="chat-thread">
+        <span class="chat-name">{{chat}}</span>
+        <details class="chat-options" (toggle)="onDetailsToggle($event, chat)">
+          <summary class="options-trigger">⋮</summary>
+          <div class="options-menu">
+            <div class="option-item download" (click)="downloadChatHistory($event)">
+              <span class="option-icon">⬇</span>
+              <span>Download</span>
+            </div>
+            <div class="option-item rename" (click)="enableRename($event, chat)">
+              <span class="option-icon">✏️</span>
+              <span>Rename</span>
+            </div>
+          </div>
+        </details>
+      </div>
+      @if(isRenaming(chat)){
+        <input 
+          type="text" 
+          class="rename-input"
+          [(ngModel)]="newChatName" 
+          (keyup.enter)="renameChat(chat)"
+          (blur)="cancelRename()"
+          placeholder="Enter new name..."
+          #renameInput
+        />
+      }
+    </div>
+  }
+</div>

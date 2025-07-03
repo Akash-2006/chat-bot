@@ -1,0 +1,27 @@
+@if (history()) {
+<div class="chat-history" #scrollContainer>
+  @for(historyItem of history();track $index) {
+    <div class="chat-history-item">
+      <div class="request">
+        <markdown [data]="historyItem.request" ></markdown>
+      </div>
+
+      <div class="response">
+        @if (historyItem.response) {
+          <markdown [data]="historyItem.response" ></markdown>
+        } @else {
+          <div class="loading-response">
+            <div class="typing-indicator">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <span>AI is typing...</span>
+          </div>
+        }
+      </div>
+
+    </div>
+  }
+</div>
+}

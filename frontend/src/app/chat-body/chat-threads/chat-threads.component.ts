@@ -13,7 +13,7 @@ import { FormsModule } from "@angular/forms";
 export class ChatThreadsComponent {
   constructor(
     private readonly ChatHistoryService: ChatHistoryService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.loadTheme();
   }
@@ -112,7 +112,7 @@ export class ChatThreadsComponent {
   }
 
   private addFocusBlurListeners(detailsElement: HTMLDetailsElement) {
-    const handleFocusOut = (event: FocusEvent) => {
+    const handleFocusOut = () => {
       setTimeout(() => {
         const activeElement = document.activeElement;
         const isWithinDetails = detailsElement.contains(activeElement);

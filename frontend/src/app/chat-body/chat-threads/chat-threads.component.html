@@ -13,7 +13,7 @@
     <div class="chat-thread-container">
       <div (click)="changeChat(chat)" class="chat-thread">
         <span class="chat-name">{{chat}}</span>
-        <details class="chat-options" (toggle)="onDetailsToggle($event, chat)">
+        <details class="chat-options" (toggle)="onDetailsToggle($event, chat)" tabindex="0">
           <summary class="options-trigger">⋮</summary>
           <div class="options-menu">
             <div class="option-item download" (click)="downloadChatHistory($event)">

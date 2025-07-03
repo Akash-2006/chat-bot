@@ -107,9 +107,46 @@ export class ChatThreadsComponent {
       // If this details is being opened, close all others
       this.closeAllDetailsExcept(chatId);
       this.openDetailsId = chatId;
+      
+      // Add focus/blur event listeners to close on focus loss
+      this.addFocusBlurListeners(detailsElement);
     } else {
       // If this details is being closed
       this.openDetailsId = null;
+      this.removeFocusBlurListeners(detailsElement);
+    }
+  }
+
+  private addFocusBlurListeners(detailsElement: HTMLDetailsElement) {
+    // Add event listeners for focus management
+    const handleFocusOut = (event: FocusEvent) => {
+      // Use setTimeout to allow focus to move to new element
+      setTimeout(() => {
+        const activeElement = document.activeElement;
+        const isWithinDetails = detailsElement.contains(activeElement);
+        
+        // If focus is not within the details element, close it
+        if (!isWithinDetails && detailsElement.open) {
+          detailsElement.open = false;
+          this.openDetailsId = null;
+          this.removeFocusBlurListeners(detailsElement);
+        }
+      }, 0);
+    };
+
+    // Store the handler so we can remove it later
+    (detailsElement as any)._focusOutHandler = handleFocusOut;
+    
+    // Add focusout event listener
+    detailsElement.addEventListener('focusout', handleFocusOut);
+  }
+
+  private removeFocusBlurListeners(detailsElement: HTMLDetailsElement) {
+    // Remove the focusout event listener
+    const handler = (detailsElement as any)._focusOutHandler;
+    if (handler) {
+      detailsElement.removeEventListener('focusout', handler);
+      delete (detailsElement as any)._focusOutHandler;
     }
   }
 

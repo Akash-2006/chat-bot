@@ -8,8 +8,6 @@ services:
     volumes:
       - ./backend:/app
     restart: always
-    environment:
-      - OPENROUTER_API_KEY=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
 
   frontend:
     build: ./frontend

@@ -11,7 +11,7 @@ import { ChatHistoryService } from "./chat-history/chat-history.service";
 @Component({
   selector: "app-chat-body",
   standalone: true,
-  imports: [FormsModule, MarkdownComponent, ChatHistoryComponent],
+  imports: [FormsModule, ChatHistoryComponent],
   templateUrl: "./chat-body.component.html",
   styleUrls: ["./chat-body.component.css"],
 })

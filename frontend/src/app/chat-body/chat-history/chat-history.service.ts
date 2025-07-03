@@ -1,11 +1,15 @@
-import {computed, Injectable, Signal, signal} from '@angular/core';
-import {BodyType, ChatHistoryType} from './chat-history.type';
+import { computed, Injectable, Signal, signal } from "@angular/core";
+import { BodyType, ChatHistoryType } from "./chat-history.type";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ChatHistoryService {
   private readonly chatHistory = signal<ChatHistoryType | null>(null);
-  private  readonly  activeChat = signal(Object.keys(this.chatHistory() ?? {})[0]);
-  readonly getHistory: Signal<BodyType[]> = computed(() => this.chatHistory()?.[this.activeChat()]?? []);
+  private readonly activeChat = signal(
+    Object.keys(this.chatHistory() ?? {})[0]
+  );
+  readonly getHistory: Signal<BodyType[]> = computed(
+    () => this.chatHistory()?.[this.activeChat()] ?? []
+  );
   constructor() {
     const perviousHistory = localStorage.getItem("history");
     const perviousActiveChat = localStorage.getItem("activeChat");
@@ -23,23 +27,23 @@ export class ChatHistoryService {
   }
   addMessage(request: string, response: string): void {
     this.chatHistory.set({
-          ...(this.chatHistory() ?? {}),
-          [this.activeChat()]: [
-            ...((this.chatHistory()?.[this.activeChat()]) ?? []),
-            { request, response }
-          ]
-        });
+      ...(this.chatHistory() ?? {}),
+      [this.activeChat()]: [
+        ...(this.chatHistory()?.[this.activeChat()] ?? []),
+        { request, response },
+      ],
+    });
     this.saveHistory();
   }
 
   addUserMessage(request: string): void {
     this.chatHistory.set({
-          ...(this.chatHistory() ?? {}),
-          [this.activeChat()]: [
-            ...((this.chatHistory()?.[this.activeChat()]) ?? []),
-            { request, response: '' }
-          ]
-        });
+      ...(this.chatHistory() ?? {}),
+      [this.activeChat()]: [
+        ...(this.chatHistory()?.[this.activeChat()] ?? []),
+        { request, response: "" },
+      ],
+    });
     this.saveHistory();
   }
 
@@ -52,21 +56,21 @@ export class ChatHistoryService {
       const updatedHistory = [...currentChatHistory];
       updatedHistory[lastIndex] = {
         ...updatedHistory[lastIndex],
-        response
+        response,
       };
 
       this.chatHistory.set({
         ...(currentHistory ?? {}),
-        [this.activeChat()]: updatedHistory
+        [this.activeChat()]: updatedHistory,
       });
       this.saveHistory();
     }
   }
 
-  createChat(){
+  createChat() {
     const length = Object.keys(this.chatHistory() ?? {}).length;
-    this.chatHistory.set({...this.chatHistory(),['untitled'+length]:[]});
-    this.activeChat.set('untitled'+length);
+    this.chatHistory.set({ ...this.chatHistory(), ["untitled" + length]: [] });
+    this.activeChat.set("untitled" + length);
     this.saveHistory();
   }
 
@@ -74,17 +78,21 @@ export class ChatHistoryService {
     return this.activeChat();
   }
 
-  getChats(){
+  getChats() {
     return this.chatHistory();
   }
 
-  changeChat(chatName:string){
-    this.activeChat.set(chatName) ;
+  changeChat(chatName: string) {
+    this.activeChat.set(chatName);
     this.saveHistory();
   }
 
   isChatActive(): boolean {
-    return this.activeChat() !== null && this.activeChat() !== undefined && this.activeChat() !== '';
+    return (
+      this.activeChat() !== null &&
+      this.activeChat() !== undefined &&
+      this.activeChat() !== ""
+    );
   }
 
   rename(oldKey: string, newKey: string) {
@@ -96,7 +104,7 @@ export class ChatHistoryService {
 
     const updated = {
       ...rest,
-      [newKey]: oldData
+      [newKey]: oldData,
     };
 
     this.chatHistory.set(updated);
@@ -105,15 +113,15 @@ export class ChatHistoryService {
 
   deleteChat(chatName: string) {
     const current = this.chatHistory();
-    
+
     if (!current?.[chatName]) return;
-    
+
     const { [chatName]: deletedChat, ...rest } = current;
-    
+
     // If we're deleting the active chat, switch to another one
     if (this.activeChat() === chatName) {
       const remainingChats = Object.keys(rest);
-      if (remainingChats.length > 0) {
+      if (remainingChats.length >= 0) {
         this.activeChat.set(remainingChats[0]);
       } else {
         // If no chats remain, create a new one
@@ -121,7 +129,7 @@ export class ChatHistoryService {
         return;
       }
     }
-    
+
     this.chatHistory.set(rest);
     this.saveHistory();
   }

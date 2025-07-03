@@ -5,7 +5,6 @@ serve(async (req) => {
   const { method } = req;
   const pathname = new URL(req.url).pathname;
 
-  // ✅ Handle CORS preflight
   if (method === "OPTIONS") {
     return new Response(null, {
       status: 204,
@@ -17,7 +16,6 @@ serve(async (req) => {
     });
   }
 
-  // ✅ Handle POST /chat
   if (method === "POST" && pathname === "/chat") {
     try {
       const { message } = await req.json();
@@ -64,7 +62,6 @@ serve(async (req) => {
     }
   }
 
-  // ❌ All other routes
   return new Response("Not found", {
     status: 404,
     headers: {

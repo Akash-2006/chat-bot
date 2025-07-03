@@ -98,6 +98,23 @@ export class ChatThreadsComponent {
     return this.renamingChatId === chatId;
   }
 
+  deleteChat(event: Event, chatName: string) {
+    event.stopPropagation();
+    
+    // Show confirmation dialog
+    if (confirm(`Are you sure you want to delete the chat "${chatName}"? This action cannot be undone.`)) {
+      this.ChatHistoryService.deleteChat(chatName);
+      
+      // Close the details menu
+      const target = event.target as HTMLElement;
+      const details = target.closest('details');
+      if (details) {
+        details.open = false;
+      }
+      this.openDetailsId = null;
+    }
+  }
+
   onDetailsToggle(event: Event, chatId: string) {
     const detailsElement = event.target as HTMLDetailsElement;
 

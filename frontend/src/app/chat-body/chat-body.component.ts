@@ -22,6 +22,10 @@ export class ChatBodyComponent {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly chatHistory: ChatHistoryService = inject(ChatHistoryService);
   constructor(private readonly chatService: ChatService) {}
+  createNewChat($event: Event) {
+    this.chatHistory.createChat();
+    this.onEnterPress($event);
+  }
   sendMessage() {
     if (!this.userInput?.trim() || this.isLoading) {
       return;
@@ -36,20 +40,20 @@ export class ChatBodyComponent {
     // Clear input immediately and set loading state
     this.userInput = "";
     this.isLoading = true;
-    console.log('Setting isLoading to true');
+    console.log("Setting isLoading to true");
 
     const response: Observable<ResponseType> =
       this.chatService.postMessage(messageToSend);
     response.subscribe({
       next: (data) => {
-        console.log('Received response, setting isLoading to false');
+        console.log("Received response, setting isLoading to false");
         this.responseData = data.reply;
         this.addBotResponseToHistory(data.reply);
         this.isLoading = false;
       },
       error: (error) => {
         console.error("Error getting response:", error);
-        console.log('Error occurred, setting isLoading to false');
+        console.log("Error occurred, setting isLoading to false");
         this.addBotResponseToHistory(
           "Sorry, I encountered an error. Please try again."
         );

@@ -4,40 +4,83 @@
       <span class="btn-icon">+</span>
       New Chat
     </button>
-    <button class="theme-toggle" (click)="toggleTheme()" [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
-      <span class="theme-icon">{{ isDarkMode ? '☀️' : '🌙' }}</span>
+    <button
+      class="theme-toggle"
+      (click)="toggleTheme()"
+      [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+    >
+      <span class="theme-icon">{{ isDarkMode ? "☀️" : "🌙" }}</span>
     </button>
   </div>
-  
+
   @for (chat of getAllChats();track chat){
-    <div class="chat-thread-container">
-      <div (click)="changeChat(chat)" class="chat-thread">
-        <span class="chat-name">{{chat}}</span>
-        <details class="chat-options" (toggle)="onDetailsToggle($event, chat)" tabindex="0">
-          <summary class="options-trigger">⋮</summary>
-          <div class="options-menu">
-            <div class="option-item download" (click)="downloadChatHistory($event)">
-              <span class="option-icon">⬇</span>
-              <span>Download</span>
-            </div>
-            <div class="option-item rename" (click)="enableRename($event, chat)">
-              <span class="option-icon">✏️</span>
-              <span>Rename</span>
-            </div>
+  <div class="chat-thread-container">
+    <div
+      (click)="changeChat(chat)"
+      (keyup.enter)="changeChat(chat)"
+      (keyup.space)="changeChat(chat)"
+      class="chat-thread"
+      tabindex="0"
+      role="button"
+    >
+      <span class="chat-name">{{ chat }}</span>
+      <details
+        class="chat-options"
+        (toggle)="onDetailsToggle($event, chat)"
+        tabindex="0"
+      >
+        <summary class="options-trigger">⋮</summary>
+        <div class="options-menu">
+          <div
+            class="option-item download"
+            (click)="downloadChatHistory($event)"
+            (keyup.enter)="downloadChatHistory($event)"
+            (keyup.space)="downloadChatHistory($event)"
+            tabindex="0"
+            role="button"
+            aria-label="Download chat"
+          >
+            <span class="option-icon">⬇</span>
+            <span>Download</span>
           </div>
-        </details>
-      </div>
-      @if(isRenaming(chat)){
-        <input 
-          type="text" 
-          class="rename-input"
-          [(ngModel)]="newChatName" 
-          (keyup.enter)="renameChat(chat)"
-          (blur)="cancelRename()"
-          placeholder="Enter new name..."
-          #renameInput
-        />
-      }
+          <div
+            class="option-item rename"
+            (click)="enableRename($event, chat)"
+            (keyup.enter)="enableRename($event, chat)"
+            (keyup.space)="enableRename($event, chat)"
+            tabindex="0"
+            role="button"
+            aria-label="Rename chat"
+          >
+            <span class="option-icon">✏️</span>
+            <span>Rename</span>
+          </div>
+          <div
+            class="option-item delete"
+            (click)="deleteChat($event, chat)"
+            (keyup.enter)="deleteChat($event, chat)"
+            (keyup.space)="deleteChat($event, chat)"
+            tabindex="0"
+            role="button"
+            aria-label="Delete chat"
+          >
+            <span class="option-icon">🗑️</span>
+            <span>Delete</span>
+          </div>
+        </div>
+      </details>
     </div>
+    @if(isRenaming(chat)){
+    <input
+      type="text"
+      class="rename-input"
+      [(ngModel)]="newChatName"
+      (keyup.enter)="renameChat(chat)"
+      (blur)="cancelRename()"
+      placeholder="Enter new name..."
+      #renameInput
+    />
+    }
+  </div>
   }
 </div>

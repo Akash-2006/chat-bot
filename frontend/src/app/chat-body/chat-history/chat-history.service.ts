@@ -102,4 +102,27 @@ export class ChatHistoryService {
     this.chatHistory.set(updated);
     this.saveHistory();
   }
+
+  deleteChat(chatName: string) {
+    const current = this.chatHistory();
+    
+    if (!current?.[chatName]) return;
+    
+    const { [chatName]: deletedChat, ...rest } = current;
+    
+    // If we're deleting the active chat, switch to another one
+    if (this.activeChat() === chatName) {
+      const remainingChats = Object.keys(rest);
+      if (remainingChats.length > 0) {
+        this.activeChat.set(remainingChats[0]);
+      } else {
+        // If no chats remain, create a new one
+        this.createChat();
+        return;
+      }
+    }
+    
+    this.chatHistory.set(rest);
+    this.saveHistory();
+  }
 }

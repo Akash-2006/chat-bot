@@ -195,6 +195,11 @@ details[open] {
   color: #ff9800;
 }
 
+.option-item.delete:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
 .option-icon {
   font-size: 14px;
   opacity: 0.8;

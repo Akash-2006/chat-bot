@@ -1,21 +1,23 @@
 <div class="chat-body">
-<app-chat-history/>
+  <app-chat-history />
   @if (isAnyChatActive()) {
 
   <div class="input-container">
-    <textarea 
-      [(ngModel)]="userInput" 
-      (keydown.enter)="onEnterPress($event)" 
+    <textarea
+      [(ngModel)]="userInput"
+      (keydown.enter)="onEnterPress($event)"
       [disabled]="isLoading"
-      placeholder="{{ isLoading ? 'Waiting for response...' : 'Type your message here...' }}" 
+      placeholder="{{
+        isLoading ? 'Waiting for response...' : 'Type your message here...'
+      }}"
       class="input-field"
       [class.loading]="isLoading"
     ></textarea>
     @if (isLoading) {
-      <div class="loading-indicator">
-        <div class="spinner"></div>
-        <span>AI is thinking...</span>
-      </div>
+    <div class="loading-indicator">
+      <div class="spinner"></div>
+      <span>AI is thinking...</span>
+    </div>
     }
   </div>
   }

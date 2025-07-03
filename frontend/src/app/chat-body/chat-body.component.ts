@@ -18,7 +18,7 @@ import { ChatHistoryService } from "./chat-history/chat-history.service";
 export class ChatBodyComponent {
   protected userInput?: string;
   protected responseData?: string;
-  protected isLoading?: boolean = false;
+  protected isLoading: boolean = false;
   private readonly sanitizer = inject(DomSanitizer);
   private readonly chatHistory: ChatHistoryService = inject(ChatHistoryService);
   constructor(private readonly chatService: ChatService) {}
@@ -82,9 +82,10 @@ export class ChatBodyComponent {
     }
   }
 
-  onEnterPress(event: KeyboardEvent) {
+  onEnterPress(event: Event) {
+    const currentEvent: KeyboardEvent = event as KeyboardEvent;
     // Prevent default behavior (new line) and send message
-    if (!event.shiftKey) {
+    if (!currentEvent.shiftKey) {
       event.preventDefault();
       this.sendMessage();
     }

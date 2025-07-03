@@ -10,7 +10,7 @@ serve(async (req) => {
     return new Response(null, {
       status: 204,
       headers: {
-        "Access-Control-Allow-Origin": "http://localhost",
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
       },
@@ -49,7 +49,7 @@ serve(async (req) => {
         status: 200,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost",
+          "Access-Control-Allow-Origin": "*",
         },
       });
     } catch (err) {
@@ -58,7 +58,7 @@ serve(async (req) => {
         status: 500,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost",
+          "Access-Control-Allow-Origin": "*",
         },
       });
     }
@@ -69,7 +69,7 @@ serve(async (req) => {
     status: 404,
     headers: {
       "Content-Type": "text/plain",
-      "Access-Control-Allow-Origin": "http://localhost",
+      "Access-Control-Allow-Origin": "*",
     },
   });
 });
